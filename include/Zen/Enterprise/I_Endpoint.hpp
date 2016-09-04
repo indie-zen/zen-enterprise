@@ -9,30 +9,24 @@
 
 #include "Configuration.hpp"
 
-#include <Zen/Core/Memory/managed_weak_ptr.hpp>
+#include <memory>
 
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
 namespace Zen {
-    namespace Enterprise {
-    namespace AppServer {
-        // HACK ack circular reference.  I_Endpoint might need to be moved to AppServer
-        class I_ProtocolService;
-    }   // namespace AppServer
-    }   // namespace Enterprise
-namespace Networking {
+namespace Enterprise {
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
-
+class I_ProtocolService;
 class I_Address;
 
 /// Basic Network Endpoint
-class NETWORKING_DLL_LINK I_Endpoint
+class ENTERPRISE_DLL_LINK I_Endpoint
 {
     /// @name Types
     /// @{
 public:
-    typedef Memory::managed_weak_ptr<Enterprise::AppServer::I_ProtocolService>  wpProtocolService_type;
+    typedef Memory::managed_weak_ptr<I_ProtocolService>  wpProtocolService_type;
 
-    typedef Memory::managed_ptr<I_Address>  pAddress_type;
+    typedef std::shared_ptr<I_Address>  pAddress_type;
     /// @}
 
     /// @name I_Endpoint interface
@@ -45,7 +39,7 @@ public:
     virtual const std::string& toString() const = 0;
 
     /// Get the network address that is associated with this endpoint.
-    virtual const Zen::Networking::I_Address& getAddress() const = 0;
+    virtual const I_Address& getAddress() const = 0;
 
     /// @return true if this endpoint is within the same process
     ///     as the calling method.
@@ -66,13 +60,7 @@ protected:
 };  // interface I_Endpoint
 
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
-}   // namespace Networking
-namespace Memory 
-{
-    /// I_Endpoint is managed by a factory
-    template<>
-    struct is_managed_by_factory<Networking::I_Endpoint> : public boost::true_type{};
-}   // namespace Memory
+}   // namespace Enterprise
 }   // namespace Zen
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
 

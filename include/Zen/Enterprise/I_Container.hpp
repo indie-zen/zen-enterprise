@@ -3,8 +3,8 @@
 //
 // Copyright (C) 2001 - 2016 Raymond A. Richards
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
-#ifndef ZEN_ENTERPRISE_APPSERVER_I_CONTAINER_HPP_INCLUDED
-#define ZEN_ENTERPRISE_APPSERVER_I_CONTAINER_HPP_INCLUDED
+#ifndef ZEN_ENTERPRISE_I_CONTAINER_HPP_INCLUDED
+#define ZEN_ENTERPRISE_I_CONTAINER_HPP_INCLUDED
 
 #include "Configuration.hpp"
 
@@ -13,7 +13,6 @@
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
 namespace Zen {
 namespace Enterprise {
-namespace AppServer {
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
 class I_ApplicationServer;
 
@@ -67,9 +66,8 @@ protected:
 };
 
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
-}   // namespace AppServer
 }   // namespace Enterprise
 }   // namespace Zen
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
 
-#endif // ZEN_ENTERPRISE_APPSERVER_I_CONTAINER_HPP_INCLUDED
+#endif // ZEN_ENTERPRISE_I_CONTAINER_HPP_INCLUDED

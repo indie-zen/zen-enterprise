@@ -6,11 +6,11 @@
 #ifndef ZEN_ENTERPRISE_APPLICATION_SERVER_MANAGER_HPP_INCLUDED
 #define ZEN_ENTERPRISE_APPLICATION_SERVER_MANAGER_HPP_INCLUDED
 
-#include <Zen/Core/Memory/managed_weak_ptr.hpp>
-
-#include <Zen/Core/Threading/I_Mutex.hpp>
+#include <Zen/Enterprise/I_ApplicationServerManager.hpp>
 
 #include <map>
+#include <memory>
+#include <mutex>
 #include <string>
 
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
@@ -25,10 +25,10 @@ class ApplicationServerManager
     /// @name Types
     /// @{
 public:
-    typedef Memory::managed_ptr<I_ProtocolService>          pProtocolService_type;
-    typedef Memory::managed_ptr<I_ApplicationService>       pApplicationService_type;
-    typedef Memory::managed_ptr<I_ResourceLocation>         pResourceLocation_type;
-    typedef Memory::managed_weak_ptr<I_ResourceLocation>    wpResourceLocation_type;
+    typedef std::shared_ptr<I_ProtocolService>          pProtocolService_type;
+    typedef std::shared_ptr<I_ApplicationService>       pApplicationService_type;
+    typedef std::shared_ptr<I_ResourceLocation>         pResourceLocation_type;
+    typedef std::weak_ptr<I_ResourceLocation>           wpResourceLocation_type;
     /// @}
 
     /// @name I_ApplicationServerManager implementation.
@@ -59,7 +59,7 @@ private:
     typedef std::map<std::string, wpResourceLocation_type>   ResourceLocations_type;
 
     /// Guard for m_resourceLocations
-    Threading::I_Mutex*                                 m_pResourceLocationGuard;
+    std::mutex                                          m_resourceLocationGuard;
     /// Map of resource locations from the string representation to the actual object
     ResourceLocations_type                              m_resourceLocations;
     /// @}

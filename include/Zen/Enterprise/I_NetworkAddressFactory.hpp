@@ -16,13 +16,13 @@
 
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
 namespace Zen {
-namespace Networking {
+namespace Enterprise {
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
 
 class I_NetworkAddress;
 
 /// Base Network Address Factory
-class NETWORKING_DLL_LINK I_NetworkAddressFactory
+class ENTERPRISE_DLL_LINK I_NetworkAddressFactory
 :   public  Plugins::I_ClassFactory
 {
     /// @name I_NetworkAddressFactory interface
@@ -46,7 +46,7 @@ protected:
 };  // interface I_NetworkAddressFactory
 
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
-}   // namespace Networking
+}   // namespace Enterprise
 }   // namespace Zen
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
 

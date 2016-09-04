@@ -10,14 +10,10 @@
 
 #include "Configuration.hpp"
 
-#include <Zen/Core/Memory/managed_ptr.hpp>
-#include <Zen/Core/Plugins/I_Configuration.hpp>
-#include <Zen/Core/Threading/I_Condition.hpp>
-#include <Zen/Core/Threading/I_Thread.hpp>
 #include <Zen/Core/Scripting/I_ScriptEngine.hpp>
 #include <Zen/Core/Event/I_EventManager.hpp>
 
-#include <Zen/Enterprise/Networking/I_Endpoint.hpp>
+#include <Zen/Enterprise/I_Endpoint.hpp>
 
 #include <boost/noncopyable.hpp>
 
@@ -29,7 +25,6 @@ namespace Zen {
         class I_DatabaseConnection;
     }   // namespace Database
 namespace Enterprise {
-namespace AppServer {
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
 class I_ProtocolService;
 class I_ApplicationService;
@@ -42,8 +37,6 @@ class I_SessionEvent;
 class I_MessageRegistry;
 
 /// Base Application Server.
-/// For a conversation about SOA and the Zen Enterprise Application server see
-/// http://www.indiezen.org/wiki/irclogs/2009/03/04/#UTC2009-03-04T18:25:15
 class ENTERPRISE_DLL_LINK I_ApplicationServer
 :   boost::noncopyable
 {
@@ -56,28 +49,28 @@ public:
     /// @name Types
     /// @{
 public:
-    typedef Memory::managed_ptr<I_ProtocolService>          pProtocolService_type;
-    typedef Memory::managed_ptr<I_ApplicationService>       pApplicationService_type;
-    typedef Memory::managed_ptr<I_Message>                  pMessage_type;
-    typedef Memory::managed_weak_ptr<I_Message>             wpMessage_type;
-    typedef Memory::managed_ptr<I_Request>                  pRequest_type;
-    typedef Memory::managed_ptr<I_Response>                 pResponse_type;
-    typedef Memory::managed_ptr<I_ResponseHandler>          pResponseHandler_type;
-    typedef Memory::managed_ptr<I_SessionEvent>             pSessionEvent_type;
-    typedef Memory::managed_ptr<I_ResourceLocation>         pResourceLocation_type;
-    typedef Memory::managed_ptr<I_MessageRegistry>          pMessageRegistry_type;
+    typedef std::shared_ptr<I_ProtocolService>          pProtocolService_type;
+    typedef std::shared_ptr<I_ApplicationService>       pApplicationService_type;
+    typedef std::shared_ptr<I_Message>                  pMessage_type;
+    typedef std::weak_ptr<I_Message>                    wpMessage_type;
+    typedef std::shared_ptr<I_Request>                  pRequest_type;
+    typedef std::shared_ptr<I_Response>                 pResponse_type;
+    typedef std::shared_ptr<I_ResponseHandler>          pResponseHandler_type;
+    typedef std::shared_ptr<I_SessionEvent>             pSessionEvent_type;
+    typedef std::shared_ptr<I_ResourceLocation>         pResourceLocation_type;
+    typedef std::shared_ptr<I_MessageRegistry>          pMessageRegistry_type;
 
-    typedef Memory::managed_ptr<Networking::I_Endpoint>     pEndpoint_type;
+    typedef std::shared_ptr<I_Endpoint>     pEndpoint_type;
 
-    typedef Memory::managed_ptr<Database::I_DatabaseConnection> pDatabaseConnection_type;
+    typedef std::shared_ptr<Database::I_DatabaseConnection> pDatabaseConnection_type;
 
     typedef Zen::Plugins::I_ConfigurationElement::const_ptr_type    pConfig_type;
 
-    typedef Memory::managed_ptr<Scripting::I_ScriptEngine>  pScriptEngine_type;
-    typedef Memory::managed_ptr<Scripting::I_ScriptModule>  pScriptModule_type;
+    typedef std::shared_ptr<Scripting::I_ScriptEngine>  pScriptEngine_type;
+    typedef std::shared_ptr<Scripting::I_ScriptModule>  pScriptModule_type;
 
-    typedef Event::I_EventManager::pEventService_type       pEventService_type;
-    typedef std::map<std::string,std::string>               config_type;
+    typedef Event::I_EventManager::pEventService_type   pEventService_type;
+    typedef std::map<std::string, std::string>          config_type;
     /// @}
 
     /// @name I_ApplicationServer interface.
@@ -162,7 +155,7 @@ public:
     /// Handle a request asynchronously.
     /// A request is a message that requires a response, but the response can be handled
     /// asynchronously.
-    /// @param _responseHandler dispatch object that will handle the reponse to this request.
+    /// @param _pResponseHandler dispatch object that will handle the reponse to this request.
     virtual void handleRequest(pRequest_type _pRequest, pResponseHandler_type _pResponseHandler) = 0;
 
     /// Handle a session event.
@@ -222,15 +215,14 @@ public:
     /// @name 'Structors
     /// @{
 protected:
-             I_ApplicationServer();
+             I_ApplicationServer() = default;
 public:
-    virtual ~I_ApplicationServer();
+    virtual ~I_ApplicationServer() = default;
     /// @}
 
 };  // interface I_ApplicationServer
 
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
-}   // namespace AppServer
 }   // namespace Enterprise
 }   // namespace Zen
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~

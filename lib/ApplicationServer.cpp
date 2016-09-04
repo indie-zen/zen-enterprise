@@ -1015,7 +1015,7 @@ ApplicationServer::createDatabaseEntry(const std::string& _connectionName, const
     DatabaseConnectionsMap_type::iterator iter = m_databaseConnectionsMap.find(_connectionName);
     if( iter == m_databaseConnectionsMap.end() )
     {
-        typedef Zen::Memory::managed_ptr<Zen::Database::I_DatabaseService>  pDatabaseService_type;
+        typedef std::shared_ptr<Zen::Database::I_DatabaseService>  pDatabaseService_type;
         pDatabaseService_type pDatabaseService = 
             Zen::Database::I_DatabaseManager::getSingleton().createDatabaseService(
                 _databaseType, 

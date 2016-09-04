@@ -7,9 +7,6 @@
 
 #include "ResourceLocation.hpp"
 
-#include <Zen/Core/Threading/MutexFactory.hpp>
-#include <Zen/Core/Threading/CriticalSection.hpp>
-
 #include <Zen/Core/Plugins/I_ExtensionRegistry.hpp>
 #include <Zen/Core/Plugins/I_ExtensionPoint.hpp>
 

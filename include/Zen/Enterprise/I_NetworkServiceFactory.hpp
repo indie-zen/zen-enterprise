@@ -16,12 +16,12 @@
 
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
 namespace Zen {
-namespace Networking {
+namespace Enterprise {
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
 class I_NetworkService;
 
 /// Base Network Service Factory interface
-class NETWORKING_DLL_LINK I_NetworkServiceFactory
+class ENTERPRISE_DLL_LINK I_NetworkServiceFactory
 :   public  Plugins::I_ClassFactory
 {
     /// @name Types
@@ -48,7 +48,7 @@ protected:
 };  // interface I_NetworkServiceFactory
 
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
-}   // namespace Networking
+}   // namespace Enterprise
 }   // namespace Zen
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
 

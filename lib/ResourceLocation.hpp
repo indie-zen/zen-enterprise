@@ -18,7 +18,7 @@ class ResourceLocation
     /// @name Types
     /// @{
 public:
-    typedef Memory::managed_ptr<I_ApplicationService>       pApplicationService_type;
+    typedef std::shared_ptr<I_ApplicationService>       pApplicationService_type;
     /// @}
 
     /// @name I_ResourceLocation implementation.

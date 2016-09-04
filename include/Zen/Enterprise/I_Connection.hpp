@@ -9,7 +9,7 @@
 
 #include "Configuration.hpp"
 
-// #include <Zen/Core/Memory/managed_ptr.hpp>
+// #include <memory>
 
 
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
@@ -27,7 +27,7 @@ class ENTERPRISE_DLL_LINK I_Connection
     /// @name Types
     /// @{
 public:
-    // typedef Zen::Memory::managed_ptr<I_FullyQualifiedResourceLocation>  pFQRL_type;
+    // typedef std::shared_ptr<I_FullyQualifiedResourceLocation>  pFQRL_type;
     /// @}
 
     /// @name I_Connection interface.
@@ -51,12 +51,6 @@ protected:
 
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
 }   // namespace Enterprise
-// namespace Memory {
-//     // I_Connection is managed by factory
-//     template<>
-//     struct is_managed_by_factory<Zen::Enterprise::AppServer::I_Connection> 
-//     :   public boost::true_type{};
-// }   // namespace Memory
 }   // namespace Zen
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
 

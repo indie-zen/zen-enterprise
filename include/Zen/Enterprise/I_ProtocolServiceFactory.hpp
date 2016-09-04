@@ -8,7 +8,7 @@
 
 #include "Configuration.hpp"
 
-#include <Zen/Core/Memory/managed_ptr.hpp>
+#include <memory>
 
 #include <Zen/Core/Plugins/I_ClassFactory.hpp>
 
@@ -17,7 +17,6 @@
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
 namespace Zen {
 namespace Enterprise {
-namespace AppServer {
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
 class I_ApplicationServer;
 class I_ProtocolService;
@@ -28,7 +27,7 @@ class ENTERPRISE_DLL_LINK I_ProtocolServiceFactory
     /// @name Types
     /// @{
 public:
-    typedef Memory::managed_ptr<I_ProtocolService>      pProtocolService_type;
+    typedef std::shared_ptr<I_ProtocolService>      pProtocolService_type;
     /// @}
 
     /// @name I_ProtocolServiceFactory interface.
@@ -53,7 +52,6 @@ protected:
 };  // interface I_ProtocolServiceFactory
 
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
-}   // namespace AppServer
 }   // namespace Enterprise
 }   // namespace Zen
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~

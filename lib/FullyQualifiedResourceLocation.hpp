@@ -18,7 +18,7 @@ class FullyQualifiedResourceLocation
     /// @name Types
     /// @{
 public:
-    typedef Zen::Memory::managed_ptr<I_ApplicationService>  pApplicationService_type;
+    typedef std::shared_ptr<I_ApplicationService>  pApplicationService_type;
     /// @}
 
     /// @name I_FullyQualifiedResourceLocation implementation.

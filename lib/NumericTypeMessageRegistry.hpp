@@ -146,7 +146,7 @@ public:
 
         virtual void serialize(boost::archive::polymorphic_oarchive& _archive, const int _version)
         {
-            boost::uint64_t messageType = m_pMessageType.as<Memory::managed_ptr<NumericType> >()->getType();
+            boost::uint64_t messageType = m_pMessageType.as<std::shared_ptr<NumericType> >()->getType();
 
             _archive & messageType;
             _archive & m_messageId;

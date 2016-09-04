@@ -8,14 +8,13 @@
 
 #include "Configuration.hpp"
 
-#include <Zen/Core/Memory/managed_ptr.hpp>
+#include <memory>
 
 #include <boost/noncopyable.hpp>
 
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
 namespace Zen {
 namespace Enterprise {
-namespace AppServer {
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
 
 class ENTERPRISE_DLL_LINK I_SessionEvent
@@ -39,20 +38,14 @@ public:
     /// @name 'Structors
     /// @{
 protected:
-             I_SessionEvent();
-    virtual ~I_SessionEvent();
+             I_SessionEvent() = default;
+    virtual ~I_SessionEvent() = default;
     /// @}
 
 };  // interface I_SessionEvent
 
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
-}   // namespace AppServer
 }   // namespace Enterprise
-namespace Memory {
-    // I_SessionEvent is managed by factory
-    template<>
-    struct is_managed_by_factory<Zen::Enterprise::AppServer::I_SessionEvent> : public boost::true_type{};
-}   // namespace Memory
 }   // namespace Zen
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
 

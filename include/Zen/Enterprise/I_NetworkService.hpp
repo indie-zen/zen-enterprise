@@ -8,11 +8,11 @@
 
 #include "Configuration.hpp"
 
-#include <Zen/Core/Memory/managed_ptr.hpp>
+#include <memory>
 
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
 namespace Zen {
-namespace Networking {
+namespace Enterprise {
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
 class I_NetworkAddress;
 class I_NetworkConnection;
@@ -21,12 +21,12 @@ class I_NetworkReadReadyListener;
 class I_NetworkWriteReadyListener;
 
 /// Basic network service interface
-class NETWORKING_DLL_LINK I_NetworkService
+class ENTERPRISE_DLL_LINK I_NetworkService
 {
     /// @name Types
     /// @{
 public:
-    typedef Zen::Memory::managed_ptr<I_NetworkConnection>     pNetworkConnection_type;
+    typedef std::shared_ptr<I_NetworkConnection>     pNetworkConnection_type;
     /// @}
 
     /// @name I_NetworkService interface
@@ -80,13 +80,7 @@ protected:
 };  // interface I_NetworkService
 
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
-}   // namespace Networking
-namespace Memory 
-{
-    /// I_NetworkService is managed by a factory
-    template<>
-    struct is_managed_by_factory<Networking::I_NetworkService> : public boost::true_type{};
-}   // namespace Memory
+}   // namespace Enterprise
 }   // namespace Zen
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
 

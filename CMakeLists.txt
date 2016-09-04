@@ -18,11 +18,22 @@ find_package(Boost REQUIRED unit_test_framework)
 include_directories("${PROJECT_SOURCE_DIR}/include")
 
 set(SOURCES
+    #lib/ApplicationServerManager.cpp
+    #lib/I_AbstractNetworkAddressFactory.cpp
+    lib/I_ApplicationServer.cpp
+    lib/I_ApplicationServerManager.cpp
     lib/I_Connection.cpp
+    #lib/I_SessionEvent.cpp
 )
 
 set(HEADERS
+    #include/Zen/Enterprise/I_AbstractNetworkAddressFactory.hpp
+    include/Zen/Enterprise/I_Address.hpp
+    #include/Zen/Enterprise/I_ApplicationServer.hpp
+    include/Zen/Enterprise/I_ApplicationServerManager.hpp
     include/Zen/Enterprise/I_Connection.hpp
+    include/Zen/Enterprise/I_SessionEvent.hpp
+    include/Zen/Enterprise/I_TimeoutHandler.hpp
 )
 
 add_definitions(-DZEN_ENTERPRISE_EXPORTS)

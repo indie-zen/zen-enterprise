@@ -111,9 +111,9 @@ private:
         /// @name Types
         /// @{
     public:
-        typedef Zen::Memory::managed_ptr<Zen::Database::I_DatabaseService>              pDatabaseService_type;
+        typedef std::shared_ptr<Zen::Database::I_DatabaseService>              pDatabaseService_type;
         typedef std::map<std::string,std::string>                                       config_type;
-        typedef Zen::Memory::managed_ptr<Zen::Database::I_DatabaseConnection>           pDatabaseConnection_type;
+        typedef std::shared_ptr<Zen::Database::I_DatabaseConnection>           pDatabaseConnection_type;
         typedef std::map<Zen::Threading::I_Thread::ThreadId,pDatabaseConnection_type>   DatabaseConnections_type;
         /// @}
 
@@ -193,7 +193,7 @@ private:
 
     pMessageRegistry_type       m_pMessageRegistry_type;
 
-    typedef Zen::Memory::managed_ptr<DatabaseConnections>       pDatabaseConnections_type;
+    typedef std::shared_ptr<DatabaseConnections>       pDatabaseConnections_type;
     typedef std::map<std::string, pDatabaseConnections_type>    DatabaseConnectionsMap_type;
     DatabaseConnectionsMap_type m_databaseConnectionsMap;
     Threading::I_Mutex*         m_pDatabaseConnectionsMapMutex;

@@ -7,8 +7,8 @@
 #ifndef ZEN_ENTERPRISE_SCRIPTABLE_GENERIC_SERVICE_HPP_INCLUDED
 #define ZEN_ENTERPRISE_SCRIPTABLE_GENERIC_SERVICE_HPP_INCLUDED
 
-#include <Zen/Core/Memory/managed_ptr.hpp>
-#include <Zen/Core/Memory/managed_weak_ptr.hpp>
+#include <memory>
+#include <memory>
 #include <Zen/Core/Memory/managed_self_ref.hpp>
 
 #include <Zen/Core/Threading/I_Mutex.hpp>
@@ -18,21 +18,21 @@
 
 #include <Zen/Core/Scripting.hpp>
 
-#include <Zen/Enterprise/AppServer/I_ApplicationService.hpp>
-#include <Zen/Enterprise/AppServer/I_ApplicationServer.hpp>
-#include <Zen/Enterprise/AppServer/I_ApplicationServerManager.hpp>
+#include <Zen/Enterprise/I_ApplicationService.hpp>
+#include <Zen/Enterprise/I_ApplicationServer.hpp>
+#include <Zen/Enterprise/I_ApplicationServerManager.hpp>
 
-#include <Zen/Enterprise/AppServer/I_MessageType.hpp>
-#include <Zen/Enterprise/AppServer/I_Message.hpp>
-#include <Zen/Enterprise/AppServer/I_MessageHandler.hpp>
-#include <Zen/Enterprise/AppServer/I_Request.hpp>
-#include <Zen/Enterprise/AppServer/I_RequestHandler.hpp>
-#include <Zen/Enterprise/AppServer/I_Response.hpp>
-#include <Zen/Enterprise/AppServer/I_ResponseHandler.hpp>
-#include <Zen/Enterprise/AppServer/I_TimeoutHandler.hpp>
-#include <Zen/Enterprise/AppServer/I_ProtocolService.hpp>
+#include <Zen/Enterprise/I_MessageType.hpp>
+#include <Zen/Enterprise/I_Message.hpp>
+#include <Zen/Enterprise/I_MessageHandler.hpp>
+#include <Zen/Enterprise/I_Request.hpp>
+#include <Zen/Enterprise/I_RequestHandler.hpp>
+#include <Zen/Enterprise/I_Response.hpp>
+#include <Zen/Enterprise/I_ResponseHandler.hpp>
+#include <Zen/Enterprise/I_TimeoutHandler.hpp>
+#include <Zen/Enterprise/I_ProtocolService.hpp>
 
-#include <Zen/Enterprise/Networking/I_Endpoint.hpp>
+#include <Zen/Enterprise/I_Endpoint.hpp>
 
 #include <boost/asio.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>
@@ -47,7 +47,6 @@ namespace Zen {
         class ThreadPool;
     } // namespace Threading
 namespace Enterprise {
-namespace AppServer {
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
 namespace detail {
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
@@ -275,9 +274,9 @@ class create_request
     /// @name Types
     /// @{
 public:
-    typedef Zen::Memory::managed_ptr<Zen::Networking::I_Endpoint>                       pEndpoint_type;
-    typedef Zen::Memory::managed_ptr<Zen::Enterprise::AppServer::I_ResourceLocation>    pResourceLocation_type;
-    typedef Zen::Memory::managed_ptr<Enterprise::AppServer::I_Request>                  pInternalRequest_type;
+    typedef std::shared_ptr<I_Endpoint>                       pEndpoint_type;
+    typedef std::shared_ptr<I_ResourceLocation>    pResourceLocation_type;
+    typedef std::shared_ptr<I_Request>                  pInternalRequest_type;
     /// @}
 
 public:
@@ -313,8 +312,8 @@ struct ClientHandlers
     /// @name Types
     /// @{
 public:
-    typedef Memory::managed_ptr<I_ResponseHandler>      pResponseHandler_type;
-    typedef Memory::managed_ptr<I_TimeoutHandler>       pTimeoutHandler_type;
+    typedef std::shared_ptr<I_ResponseHandler>      pResponseHandler_type;
+    typedef std::shared_ptr<I_TimeoutHandler>       pTimeoutHandler_type;
     /// @}
 
     /// @name 'Structors
@@ -356,22 +355,22 @@ public:
     typedef ScriptObjectReference_type                              ScriptWrapper_type;
     typedef ScriptWrapper_type*                                     pScriptWrapper_type;
 
-    typedef Zen::Memory::managed_ptr<Zen::Networking::I_Endpoint>                       pEndpoint_type;
-    typedef Zen::Memory::managed_ptr<Zen::Enterprise::AppServer::I_ResourceLocation>    pResourceLocation_type;
+    typedef std::shared_ptr<I_Endpoint>                       pEndpoint_type;
+    typedef std::shared_ptr<I_ResourceLocation>    pResourceLocation_type;
     typedef I_ApplicationServer::pRequest_type                                          pRequest_type;
     typedef I_ApplicationServer::pResponse_type                                         pResponse_type;
     typedef I_ApplicationServer::pMessage_type                                          pMessage_type;
 
-    typedef Memory::managed_ptr<I_ResponseHandler>                                      pResponseHandler_type;
-    typedef Memory::managed_ptr<I_TimeoutHandler>                                       pTimeoutHandler_type;
+    typedef std::shared_ptr<I_ResponseHandler>                                      pResponseHandler_type;
+    typedef std::shared_ptr<I_TimeoutHandler>                                       pTimeoutHandler_type;
 
     typedef std::map<boost::uint64_t, boost::shared_ptr<ClientHandlers> >               ClientHandlersMap_type;
 
-    typedef Zen::Memory::managed_ptr<I_MessageType>                                     pMessageType_type;
-    typedef Zen::Memory::managed_ptr<I_RequestHandler>                                  pRequestHandler_type;
+    typedef std::shared_ptr<I_MessageType>                                     pMessageType_type;
+    typedef std::shared_ptr<I_RequestHandler>                                  pRequestHandler_type;
     typedef std::map<pMessageType_type, pRequestHandler_type>                           RequestHandlers_type;
 
-    typedef Zen::Memory::managed_ptr<I_MessageHandler>                                  pMessageHandler_type;
+    typedef std::shared_ptr<I_MessageHandler>                                  pMessageHandler_type;
     typedef std::map<pMessageType_type, pMessageHandler_type>                           MessageHandlers_type;
     /// @}
 
@@ -424,7 +423,7 @@ public:
     /// @name 'Structors
     /// @{
 protected:
-             scriptable_generic_service(Zen::Enterprise::AppServer::I_ApplicationServer& _appServer, const std::string& _name);
+             scriptable_generic_service(I_ApplicationServer& _appServer, const std::string& _name);
     virtual ~scriptable_generic_service();
     /// @}
 
@@ -461,7 +460,7 @@ protected:
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
 template<typename BaseClass_type, typename Class_type>
 inline
-scriptable_generic_service<BaseClass_type, Class_type>::scriptable_generic_service(Zen::Enterprise::AppServer::I_ApplicationServer& _appServer, const std::string& _name)
+scriptable_generic_service<BaseClass_type, Class_type>::scriptable_generic_service(I_ApplicationServer& _appServer, const std::string& _name)
 :   m_appServer(_appServer)
 ,   m_name(_name)
 ,   m_protocol("default")
@@ -483,7 +482,7 @@ inline
 void
 scriptable_generic_service<BaseClass_type, Class_type>::setConfiguration(const Zen::Plugins::I_ConfigurationElement& _config)
 {
-    m_pLocation = Zen::Enterprise::AppServer::I_ApplicationServerManager::getSingleton()
+    m_pLocation = I_ApplicationServerManager::getSingleton()
         .createLocation(_config.getAttribute("location"));
 
     std::string protocol = _config.getAttribute("protocol");
@@ -573,8 +572,8 @@ scriptable_generic_service<BaseClass_type, Class_type>::handleMessage(pMessage_t
     // Handle an inbound message, request or response.
 
     // Check to see if it's a response
-    Zen::Memory::managed_ptr<I_Response> pResponse(
-        _pMessage.as<Zen::Memory::managed_ptr<I_Response> >());
+    std::shared_ptr<I_Response> pResponse(
+        _pMessage.as<std::shared_ptr<I_Response> >());
 
     // If it is a response, handle it.
     if(pResponse.isValid())
@@ -610,8 +609,8 @@ scriptable_generic_service<BaseClass_type, Class_type>::handleMessage(pMessage_t
     }
 
     // Check to see if it's a request
-    Zen::Memory::managed_ptr<I_Request> pRequest(
-        _pMessage.as<Zen::Memory::managed_ptr<I_Request> >());
+    std::shared_ptr<I_Request> pRequest(
+        _pMessage.as<std::shared_ptr<I_Request> >());
 
     if( pRequest.isValid() )
     {
@@ -752,7 +751,7 @@ scriptable_generic_service<BaseClass_type, Class_type>::send(create_request<Requ
             _responseFunction
         );
 
-    Memory::managed_ptr<I_ResponseHandler> pResponseHandler(
+    std::shared_ptr<I_ResponseHandler> pResponseHandler(
         pRawResponseHandler, 
         destroyResponseHandler
     );
@@ -764,7 +763,7 @@ scriptable_generic_service<BaseClass_type, Class_type>::send(create_request<Requ
             _timeoutFunction
         );
 
-    Memory::managed_ptr<I_TimeoutHandler> pTimeoutHandler(
+    std::shared_ptr<I_TimeoutHandler> pTimeoutHandler(
         pRawTimeoutHandler,
         destroyTimeoutHandler
     );
@@ -909,7 +908,6 @@ scriptable_generic_service<BaseClass_type, Class_type>::getProtocol()
 }
 
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
-}   // namespace AppServer
 }   // namespace Enterprise
 }   // namespace Zen
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~

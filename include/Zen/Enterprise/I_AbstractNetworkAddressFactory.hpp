@@ -12,13 +12,13 @@
 
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
 namespace Zen {
-namespace Networking {
+namespace Enterprise {
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
 
 class I_NetworkAddressFactory;
 
 /// Abstract Network Address Factory
-class NETWORKING_DLL_LINK I_AbstractNetworkAddressFactory
+class ENTERPRISE_DLL_LINK I_AbstractNetworkAddressFactory
 {
 	/// @name Types
 	/// @{
@@ -44,14 +44,14 @@ public:
     /// @name 'Structors
     /// @{
 protected:
-             I_AbstractNetworkAddressFactory();
-    virtual ~I_AbstractNetworkAddressFactory();
+             I_AbstractNetworkAddressFactory() = default;
+    virtual ~I_AbstractNetworkAddressFactory() = default;
     /// @}
 
 };  // interface I_AbstractNetworkAddressFactory
 
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
-}   // namespace Networking
+}   // namespace Enterprise
 }   // namespace Zen
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
 

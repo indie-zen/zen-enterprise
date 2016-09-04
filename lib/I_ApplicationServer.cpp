@@ -3,30 +3,17 @@
 //
 // Copyright (C) 2001 - 2016 Raymond A. Richards
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
-#include "ApplicationServer.hpp"
-
-#include <Zen/Core/Threading/MutexFactory.hpp>
-#include <Zen/Core/Threading/I_Mutex.hpp>
-#include <Zen/Core/Threading/CriticalSection.hpp>
+#include <Zen/Enterprise/I_ApplicationServer.hpp>
 
 #include <map>
+#include <mutex>
 
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
 namespace Zen {
 namespace Enterprise {
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
-I_ApplicationServer::I_ApplicationServer()
-{
-}
-
-//-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
-I_ApplicationServer::~I_ApplicationServer()
-{
-}
-
-//-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
 static std::map<std::string, I_ApplicationServer*>   sm_servers;
-static Threading::I_Mutex* sm_pServerGuard = Threading::MutexFactory::create();
+static std::mutex sm_pServerGuard = new std::mutex();
 namespace {
     class gc 
     { 
@@ -34,7 +21,7 @@ namespace {
         ~gc() 
         { 
             {
-                Zen::Threading::CriticalSection guard(sm_pServerGuard);
+                std::lock_guard<std::mutex> lock(*sm_pServerGuard);
 
                 while (!sm_servers.empty())
                 {
@@ -43,7 +30,7 @@ namespace {
                 }
             }
 
-            Threading::MutexFactory::destroy(sm_pServerGuard); 
+            delete sm_pServerGuard;
         } 
     }; 
     static gc sm_garbageCollection;
@@ -52,7 +39,7 @@ namespace {
 I_ApplicationServer&
 I_ApplicationServer::getInstance(const std::string& _instanceName)
 {
-    Threading::CriticalSection lock(sm_pServerGuard);
+    std::lock_guard<std::mutex> lock(*sm_pServerGuard);
     
     std::map<std::string, I_ApplicationServer*>::iterator iter = sm_servers.find(_instanceName);
     if (iter == sm_servers.end())

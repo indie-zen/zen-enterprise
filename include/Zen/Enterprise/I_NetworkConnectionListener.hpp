@@ -10,7 +10,7 @@
 
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
 namespace Zen {
-namespace Networking {
+namespace Enterprise {
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
 
 /// A listener interface for network connections.
@@ -22,7 +22,7 @@ namespace Networking {
 /// specifically connectionless network services.  In this case it is the
 /// network protocol's responsibility for dispatching the event.
 ///
-class NETWORKING_DLL_LINK I_NetworkConnectionListener
+class ENTERPRISE_DLL_LINK I_NetworkConnectionListener
 {
     /// @name I_NetworkConnectionListener interface
     /// @{
@@ -44,7 +44,7 @@ protected:
 };  // interface I_NetworkConnectionListener
 
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
-}   // namespace Networking
+}   // namespace Enterprise
 }   // namespace Zen
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
 

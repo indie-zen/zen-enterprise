@@ -8,13 +8,13 @@
 
 #include "Configuration.hpp"
 
-// #include <Zen/Core/Memory/managed_ptr.hpp>
+// #include <memory>
 
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
 namespace Zen {
-    namespace Networking {
+    namespace Enterprise {
         class I_Endpoint;
-    }   // namespace Networking
+    }   // namespace Enterprise
 namespace Enterprise {
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
 class I_Message;
@@ -26,10 +26,10 @@ class ENTERPRISE_DLL_LINK I_MessageFactory
     /// @name Types
     /// @{
 public:
-    typedef Zen::Memory::managed_ptr<I_Message>                              pMessage_type;
-    typedef Zen::Memory::managed_weak_ptr<I_Message>                         wpMessage_type;
-    typedef Zen::Memory::managed_ptr<Networking::I_Endpoint>                 pEndpoint_type;
-    typedef Zen::Memory::managed_ptr<I_MessageHeader>                        pMessageHeader_type;
+    typedef std::shared_ptr<I_Message>                      pMessage_type;
+    typedef Zen::Memory::managed_weak_ptr<I_Message>        wpMessage_type;
+    typedef std::shared_ptr<I_Endpoint>                     pEndpoint_type;
+    typedef std::shared_ptr<I_MessageHeader>                pMessageHeader_type;
     /// @}
 
     /// @name I_MessageFactory interface
@@ -50,11 +50,6 @@ protected:
 
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
 }   // namespace Enterprise
-namespace Memory {
-    // I_Message is managed by factory
-    template<>
-    struct is_managed_by_factory<Zen::Enterprise::AppServer::I_MessageFactory> : public boost::true_type{};
-}   // namespace Memory
 }   // namespace Zen
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
 

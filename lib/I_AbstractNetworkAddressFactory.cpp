@@ -10,15 +10,6 @@
 namespace Zen {
 namespace Enterprise {
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
-I_AbstractNetworkAddressFactory::I_AbstractNetworkAddressFactory()
-{
-}
-
-//-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
-I_AbstractNetworkAddressFactory::~I_AbstractNetworkAddressFactory()
-{
-}
-//-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
 static AbstractNetworkAddressFactory sm_abstractNetworkAddressFactory;
 
 I_AbstractNetworkAddressFactory&

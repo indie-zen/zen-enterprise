@@ -8,14 +8,13 @@
 
 #include "Configuration.hpp"
 
-#include <Zen/Core/Memory/managed_ptr.hpp>
+#include <memory>
 
 #include <boost/noncopyable.hpp>
 
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
 namespace Zen {
 namespace Enterprise {
-namespace AppServer {
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
 class I_ProtocolService;
 class I_ApplicationService;
@@ -28,9 +27,9 @@ class ENTERPRISE_DLL_LINK I_ApplicationServerManager
     /// @name Types
     /// @{
 public:
-    typedef Memory::managed_ptr<I_ProtocolService>          pProtocolService_type;
-    typedef Memory::managed_ptr<I_ApplicationService>       pApplicationService_type;
-    typedef Memory::managed_ptr<I_ResourceLocation>         pResourceLocation_type;
+    typedef std::shared_ptr<I_ProtocolService>          pProtocolService_type;
+    typedef std::shared_ptr<I_ApplicationService>       pApplicationService_type;
+    typedef std::shared_ptr<I_ResourceLocation>         pResourceLocation_type;
     /// @}
 
     /// @name I_ApplicationServerManager interface.
@@ -57,14 +56,13 @@ public:
     /// @name 'Structors
     /// @{
 protected:
-             I_ApplicationServerManager();
-    virtual ~I_ApplicationServerManager();
+             I_ApplicationServerManager() = default;
+    virtual ~I_ApplicationServerManager() = default;
     /// @}
 
 };  // interface I_ApplicationServerManager
 
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
-}   // namespace AppServer
 }   // namespace Enterprise
 }   // namespace Zen
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
