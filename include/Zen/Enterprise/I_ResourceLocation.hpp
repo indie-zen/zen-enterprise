@@ -48,8 +48,8 @@ public:
     /// @name 'Structors
     /// @{
 protected:
-             I_ResourceLocation();
-    virtual ~I_ResourceLocation();
+             I_ResourceLocation() = default;
+    virtual ~I_ResourceLocation() = default;
     /// @}
 
 };  // interface I_ResourceLocation

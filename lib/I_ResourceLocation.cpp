@@ -10,15 +10,7 @@
 namespace Zen {
 namespace Enterprise {
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
-I_ResourceLocation::I_ResourceLocation()
-{
-}
-
-//-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
-I_ResourceLocation::~I_ResourceLocation()
-{
-}
-
+// Nothing to implement, is this file really needed now?
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
 }   // namespace Enterprise
 }   // namespace Zen

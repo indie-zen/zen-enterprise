@@ -40,8 +40,8 @@ public:
     /// @name 'Structors
     /// @{
 protected:
-             I_Request();
-    virtual ~I_Request();
+             I_Request() = default;
+    virtual ~I_Request() = default;
     /// @}
 
 };  // interface I_Request

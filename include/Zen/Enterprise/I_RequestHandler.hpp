@@ -45,8 +45,8 @@ public:
     /// @name 'Structors
     /// @{
 protected:
-             I_RequestHandler();
-    virtual ~I_RequestHandler();
+             I_RequestHandler() = default;
+    virtual ~I_RequestHandler() = default;
     /// @}
 
 };  // interface I_RequestHandler

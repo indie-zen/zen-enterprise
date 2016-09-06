@@ -20,9 +20,14 @@ include_directories("${PROJECT_SOURCE_DIR}/include")
 set(SOURCES
     #lib/ApplicationServerManager.cpp
     #lib/I_AbstractNetworkAddressFactory.cpp
-    lib/I_ApplicationServer.cpp
+    #lib/I_ApplicationServer.cpp
     lib/I_ApplicationServerManager.cpp
     lib/I_Connection.cpp
+    lib/I_Request.cpp
+    lib/I_RequestHandler.cpp
+    lib/I_ResourceLocation.cpp
+    lib/I_Response.cpp
+    lib/I_ResponseHandler.cpp
     #lib/I_SessionEvent.cpp
 )
 
@@ -32,7 +37,12 @@ set(HEADERS
     #include/Zen/Enterprise/I_ApplicationServer.hpp
     include/Zen/Enterprise/I_ApplicationServerManager.hpp
     include/Zen/Enterprise/I_Connection.hpp
+    include/Zen/Enterprise/I_Request.hpp
+    include/Zen/Enterprise/I_RequestHandler.hpp
+    include/Zen/Enterprise/I_ResourceLocation.hpp
     include/Zen/Enterprise/I_SessionEvent.hpp
+    include/Zen/Enterprise/I_Response.hpp
+    include/Zen/Enterprise/I_ResponseHandler.hpp
     include/Zen/Enterprise/I_TimeoutHandler.hpp
 )
 
@@ -54,3 +64,6 @@ target_link_libraries( zen-enterprise-tests zen-enterprise
 )
 
 add_test( tests zen-enterprise-tests)
+
+install(TARGETS zen-enterprise DESTINATION /usr/local/bin)
+install(DIRECTORY include DESTINATION /usr/local)
