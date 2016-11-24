@@ -9,15 +9,13 @@
 
 #include "Configuration.hpp"
 
-// #include <memory>
-
+#include <memory>
 
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
 namespace Zen {
 namespace Enterprise {
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
-
-// class I_FullyQualifiedResourceLocation;
+class I_Reactor;
 
 /// @brief Connection
 /// 
@@ -27,17 +25,14 @@ class ENTERPRISE_DLL_LINK I_Connection
     /// @name Types
     /// @{
 public:
-    // typedef std::shared_ptr<I_FullyQualifiedResourceLocation>  pFQRL_type;
     /// @}
 
     /// @name I_Connection interface.
     /// @{
 public:
-    /// Get the connection id.
-    // virtual boost::uint64_t getConnectionId() const = 0;
-
-    /// Get the FQRL.
-    // virtual pFQRL_type getFQRL() const = 0;
+    /// After a connection is created, register it with a reactor
+    /// @todo Or should it be I_Reactor::register(I_Connection)?
+    virtual void registerReactor(I_Reactor &_reactor) = 0;
     /// @}
 
     /// @name 'Structors
